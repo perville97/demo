@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Choisir une matière</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI', Arial, sans-serif;
+}
+
+body{
+background: linear-gradient(145deg,#f8f0fc 0%,#e9d5ff 100%);
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:20px;
+}
+
+.container{
+max-width:1100px;
+width:100%;
+background:rgba(255,255,255,0.85);
+backdrop-filter:blur(10px);
+border-radius:20px;
+box-shadow:0 10px 30px rgba(147,51,234,0.2);
+padding:30px;
+border:1px solid rgba(255,255,255,0.5);
+}
+
+h1{
+text-align:center;
+color:#6b21a8;
+margin-bottom:10px;
+font-size:2em;
+}
+
+.subtitle{
+text-align:center;
+color:#7c3aed;
+margin-bottom:30px;
+}
+
+.matiere-grid{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(240px,1fr));
+gap:25px;
+}
+
+.matiere-card{
+background:linear-gradient(135deg,#a855f7,#7e22ce);
+color:white;
+padding:25px;
+border-radius:15px;
+text-align:center;
+cursor:pointer;
+transition:all 0.3s ease;
+box-shadow:0 6px 15px rgba(147,51,234,0.3);
+position:relative;
+overflow:hidden;
+}
+
+.matiere-card::before{
+content:'';
+position:absolute;
+top:-50%;
+left:-50%;
+width:200%;
+height:200%;
+background:rgba(255,255,255,0.1);
+transform:rotate(45deg);
+transition:0.5s;
+}
+
+.matiere-card:hover::before{
+top:-20%;
+left:-20%;
+}
+
+.matiere-card:hover{
+transform:translateY(-8px) scale(1.03);
+box-shadow:0 12px 25px rgba(147,51,234,0.4);
+}
+
+.matiere-card h3{
+margin-bottom:10px;
+font-size:1.5em;
+}
+
+.matiere-card p{
+margin:5px 0;
+opacity:0.9;
+font-size:0.95em;
+}
+
+.back-link{
+display:inline-block;
+margin-top:30px;
+text-decoration:none;
+color:#6b21a8;
+font-weight:600;
+padding:10px 20px;
+border-radius:30px;
+border:1px solid #c084fc;
+background:rgba(255,255,255,0.6);
+transition:0.3s;
+}
+
+.back-link:hover{
+background:#a855f7;
+color:white;
+}
+
+.footer{
+text-align:center;
+margin-top:20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Choisissez une matière</h1>
+<p class="subtitle">Sélectionnez une matière pour voir les résultats détaillés</p>
+
+<div class="matiere-grid">
+
+<div th:each="matiere : ${matieres}" 
+class="matiere-card"
+th:onclick="'window.location.href=\'' + @{/resultats/} + ${matiere.id} + '\''">
+
+<h3 th:text="${matiere.nom}">Mathématiques</h3>
+
+<p th:text="'Code : ' + ${matiere.code}">
+Code: MATH101
+</p>
+
+<p th:text="'Coefficient : ' + ${matiere.coefficient}">
+Coefficient: 4
+</p>
+
+</div>
+
+</div>
+
+<div class="footer">
+<a href="/" class="back-link">← Retour à l'accueil</a>
+</div>
+
+</div>
+
+</body>
+</html>

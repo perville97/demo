@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gestion des Notes</title>
+
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+
+body{
+    height:100vh;
+    background: linear-gradient(145deg,#f3f0ff 0%,#e0d7ff 100%);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.container{
+    max-width:1000px; /* réduit */
+    width:100%;
+    background:rgba(255,255,255,0.95);
+    backdrop-filter:blur(8px);
+    border-radius:18px;
+    box-shadow:0 12px 30px rgba(0,0,0,0.15);
+    padding:20px; /* réduit */
+}
+
+.header{text-align:center;margin-bottom:20px;} /* réduit */
+
+.header h1{
+font-size:2em; /* réduit */
+font-weight:700;
+background:linear-gradient(145deg,#a855f7,#9333ea);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.header p{
+color:#6b21a8;
+font-size:0.95em;
+}
+
+.stats-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:15px; /* réduit */
+margin-bottom:25px;
+}
+
+.stat-card{
+background:white;
+padding:18px; /* réduit */
+border-radius:12px;
+text-align:center;
+box-shadow:0 3px 10px rgba(147,51,234,0.1);
+border:1px solid rgba(168,85,247,0.2);
+}
+
+.stat-number{
+font-size:2em; /* réduit */
+font-weight:700;
+color:#9333ea;
+}
+
+.stat-label{
+font-size:0.8em;
+color:#4c1d95;
+text-transform:uppercase;
+}
+
+.menu-grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:15px; /* réduit */
+}
+
+.menu-item{
+background:linear-gradient(145deg,#a855f7,#9333ea);
+color:white;
+text-decoration:none;
+padding:20px; /* réduit */
+border-radius:12px;
+text-align:center;
+font-weight:600;
+font-size:1em;
+box-shadow:0 8px 20px rgba(147,51,234,0.3);
+}
+
+.menu-icon{
+font-size:2.2em; /* réduit */
+margin-bottom:8px;
+display:block;
+}
+
+.menu-title{
+font-size:1.1em;
+margin-bottom:3px;
+}
+
+.menu-description{
+font-size:0.8em;
+opacity:0.9;
+}
+
+.footer{
+text-align:center;
+color:#6b21a8;
+font-size:0.8em;
+margin-top:15px;
+border-top:1px solid #d8b4fe;
+padding-top:10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+<h1>📚 Gestion des Notes</h1>
+<p>Application professionnelle de gestion des résultats académiques</p>
+</div>
+
+<div class="stats-grid">
+
+<div class="stat-card">
+<div class="stat-number" th:text="${totalEtudiants} ?: '0'">0</div>
+<div class="stat-label">Étudiants inscrits</div>
+</div>
+
+<div class="stat-card">
+<div class="stat-number" th:text="${totalMatieres} ?: '0'">0</div>
+<div class="stat-label">Matières</div>
+</div>
+
+<div class="stat-card">
+<div class="stat-number" th:text="${totalNotes} ?: '0'">0</div>
+<div class="stat-label">Notes saisies</div>
+</div>
+
+</div>
+
+<div class="menu-grid">
+
+<a href="/etudiants" class="menu-item">
+<span class="menu-icon">👥</span>
+<div class="menu-title">Gestion des Étudiants</div>
+<div class="menu-description">Ajouter, modifier ou supprimer des étudiants</div>
+</a>
+
+<a href="/cours" class="menu-item">
+<span class="menu-icon">📖</span>
+<div class="menu-title">Gestion des Cours</div>
+<div class="menu-description">Définir les matières et leurs coefficients</div>
+</a>
+
+<a href="/notes" class="menu-item">
+<span class="menu-icon">✏️</span>
+<div class="menu-title">Saisie des Notes</div>
+<div class="menu-description">Enregistrer les notes des étudiants</div>
+</a>
+
+<a href="/choisir-matiere" class="menu-item">
+<span class="menu-icon">📊</span>
+<div class="menu-title">Résultats par matière</div>
+<div class="menu-description">Consulter les résultats pour une matière spécifique</div>
+</a>
+
+</div>
+
+<div class="footer">
+© 2026 - Gestion des Notes • Tous droits réservés
+</div>
+
+</div>
+
+</body>
+</html>
